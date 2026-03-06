@@ -5,41 +5,43 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jackal Boutique</title>
 <link rel="stylesheet" href="style.css">
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
-
 <body>
 
 <header>
 <h1>🐺 Jackal Boutique</h1>
-<p>Découvrez nos produits</p>
+<p>Choisissez vos produits et passez commande</p>
 </header>
 
 <div class="products">
 
-<div class="product">
-<img src="images/product1.jpg" alt="Produit 1">
-<h3>Produit 1</h3>
-<p class="price">25€</p>
-<button onclick="order('Produit 1')">Commander</button>
-</div>
+  <div class="product">
+    <img src="images/product1.jpg" alt="Produit 1">
+    <h3>Produit 1</h3>
+    <p class="price">25€</p>
+    <input type="number" value="1" min="1" id="qty1">
+    <button onclick="commander('Produit 1', 25, document.getElementById('qty1').value)">Commander</button>
+  </div>
 
-<div class="product">
-<img src="images/product2.jpg" alt="Produit 2">
-<h3>Produit 2</h3>
-<p class="price">40€</p>
-<button onclick="order('Produit 2')">Commander</button>
-</div>
+  <div class="product">
+    <img src="images/product2.jpg" alt="Produit 2">
+    <h3>Produit 2</h3>
+    <p class="price">40€</p>
+    <input type="number" value="1" min="1" id="qty2">
+    <button onclick="commander('Produit 2', 40, document.getElementById('qty2').value)">Commander</button>
+  </div>
 
-<div class="product">
-<img src="images/product3.jpg" alt="Produit 3">
-<h3>Produit 3</h3>
-<p class="price">18€</p>
-<button onclick="order('Produit 3')">Commander</button>
-</div>
+  <div class="product">
+    <img src="images/product3.jpg" alt="Produit 3">
+    <h3>Produit 3</h3>
+    <p class="price">18€</p>
+    <input type="number" value="1" min="1" id="qty3">
+    <button onclick="commander('Produit 3', 18, document.getElementById('qty3').value)">Commander</button>
+  </div>
 
 </div>
 
 <script src="script.js"></script>
-
 </body>
 </html>
