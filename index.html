@@ -1,47 +1,69 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jackal Boutique</title>
-<link rel="stylesheet" href="style.css">
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+<style>
+
+body{
+font-family: Arial;
+background:#111;
+color:white;
+text-align:center;
+padding:40px;
+}
+
+.product{
+background:#222;
+padding:20px;
+border-radius:10px;
+max-width:350px;
+margin:auto;
+}
+
+img{
+width:100%;
+border-radius:10px;
+}
+
+button{
+background:#ff9900;
+border:none;
+padding:12px 20px;
+font-size:16px;
+border-radius:6px;
+cursor:pointer;
+margin-top:10px;
+}
+
+button:hover{
+background:#ffaa22;
+}
+
+</style>
+
 </head>
+
 <body>
 
-<header>
 <h1>🐺 Jackal Boutique</h1>
-<p>Choisissez vos produits et passez commande</p>
-</header>
 
-<div class="products">
+<div class="product">
 
-  <div class="product">
-    <img src="images/product1.jpg" alt="Produit 1">
-    <h3>Produit 1</h3>
-    <p class="price">25€</p>
-    <input type="number" value="1" min="1" id="qty1">
-    <button onclick="commander('Produit 1', 25, document.getElementById('qty1').value)">Commander</button>
-  </div>
+<img src="produit1.jpg">
 
-  <div class="product">
-    <img src="images/product2.jpg" alt="Produit 2">
-    <h3>Produit 2</h3>
-    <p class="price">40€</p>
-    <input type="number" value="1" min="1" id="qty2">
-    <button onclick="commander('Produit 2', 40, document.getElementById('qty2').value)">Commander</button>
-  </div>
+<h2>Produit 1</h2>
 
-  <div class="product">
-    <img src="images/product3.jpg" alt="Produit 3">
-    <h3>Produit 3</h3>
-    <p class="price">18€</p>
-    <input type="number" value="1" min="1" id="qty3">
-    <button onclick="commander('Produit 3', 18, document.getElementById('qty3').value)">Commander</button>
-  </div>
+<p>Prix : 20€</p>
+
+<a href="https://t.me/leplug330bdx?text=Bonjour%20je%20veux%20commander%20le%20Produit%201%20chez%20Jackal">
+<button>Commander</button>
+</a>
 
 </div>
 
-<script src="script.js"></script>
 </body>
+
 </html>
