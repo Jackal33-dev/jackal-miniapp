@@ -7,6 +7,7 @@ function commander(produit, prix, quantite) {
         quantite: quantite
     };
     // envoyer les données au bot
-    tg.sendData(JSON.stringify(data));
+    tg.sendData(produit);
     alert("Commande envoyée !");
 }
+
