@@ -10,7 +10,22 @@ header {
   text-align: center;
   padding: 20px;
 }
+/* Force toutes les images et vidéos à avoir la même taille */
+.product img,
+.product video {
+  width: 100%;        /* prend toute la largeur du produit */
+  height: 200px;      /* même hauteur pour tous */
+  object-fit: cover;  /* adapte l’image ou vidéo sans déformer */
+  border-radius: 10px;
+}
 
+
+.product {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 350px; 
+}
 .products {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -30,7 +45,7 @@ video {
   max-width: 300px;
   height: auto;
 }
-  
+
 
 .price {
   font-size: 18px;
