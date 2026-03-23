@@ -44,7 +44,16 @@
   </div>
 
 </div>
-
-<script src="script.js"></script>
+<script>
+function commander(produit, prix, quantite) {
+  const message = `Commande:%0AProduit: ${produit}%0APrix: ${prix}€%0AQuantité: ${quantite}`;
+  
+  const username = "leplug330bdx"; // sans @
+  
+  const url = `https://t.me/${username}?text=${message}`;
+  
+  window.open(url, "_blank");
+}
+</script>
 </body>
 </html>
