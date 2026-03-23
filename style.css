@@ -1,63 +1,80 @@
+/* --- Général --- */
 body {
   font-family: Arial, sans-serif;
   background: #f4f4f4;
   margin: 0;
 }
 
+/* --- Header --- */
 header {
   background: black;
   color: white;
   text-align: center;
   padding: 20px;
 }
-/* Force toutes les images et vidéos à avoir la même taille */
-.product img,
-.product video {
-  width: 50%;        /* prend toute la largeur du produit */
-  height: 100px;      /* même hauteur pour tous */
-  object-fit: cover;  /* adapte l’image ou vidéo sans déformer */
-  border-radius: 10px;
-}
 
-
-
+/* --- Grille de produits --- */
 .products {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
-  padding: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+  padding: 15px;
 }
 
+/* --- Produit individuel --- */
 .product {
   background: white;
   border-radius: 10px;
-  padding: 15px;
+  padding: 10px;
   text-align: center;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
-video {
+
+/* --- Image et vidéo uniformes --- */
+.product img,
+.product video {
   width: 100%;
-  max-width: 300px;
-  height: auto;
+  height: 130px;       /* hauteur uniforme pour tous */
+  object-fit: cover;    /* recadrage sans déformation */
+  border-radius: 10px;
+  margin-bottom: 10px;
 }
 
-
+/* --- Prix --- */
 .price {
-  font-size: 18px;
+  font-size: 16px;
   color: #2ecc71;
   font-weight: bold;
+  margin: 5px 0;
 }
 
+/* --- Input nombre --- */
 input[type="number"] {
   width: 50px;
   margin: 5px 0;
 }
 
+/* --- Bouton --- */
 button {
   background: black;
   color: white;
   border: none;
-  padding: 10px 15px;
+  padding: 8px 12px;
   border-radius: 5px;
   cursor: pointer;
+  font-size: 14px;
+}
+
+/* --- Responsive pour petits écrans --- */
+@media (max-width: 400px) {
+  .products {
+    grid-template-columns: 1fr; /* une colonne sur petit écran */
+  }
+  .product img,
+  .product video {
+    height: 120px; /* un peu plus petit sur mobile */
+  }
 }
