@@ -1,62 +1,325 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jackal Boutique</title>
-<link rel="stylesheet" href="style.css">
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jackal Boutique</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:      #0a0a0a;
+      --surface: #141414;
+      --border:  #222;
+      --accent:  #2ecc71;
+      --accent2: #27ae60;
+      --text:    #f0f0f0;
+      --muted:   #666;
+      --radius:  14px;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      text-align: center;
+      padding: 28px 20px 22px;
+    }
+    header h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 42px;
+      letter-spacing: 4px;
+      color: var(--accent);
+      line-height: 1;
+    }
+    header p {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 6px;
+      letter-spacing: 1px;
+    }
+
+    /* ── GRILLE ── */
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      padding: 28px 20px 48px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    /* ── CARTE ── */
+    .product {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+    .product:hover {
+      transform: translateY(-5px);
+      border-color: var(--accent);
+    }
+
+    /* ── MÉDIA ── */
+    .media-wrap {
+      width: 100%;
+      height: 200px;
+      overflow: hidden;
+      background: #000;
+      position: relative;
+    }
+    .media-wrap img,
+    .media-wrap video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s;
+    }
+    .product:hover .media-wrap img {
+      transform: scale(1.05);
+    }
+
+    /* ── CORPS ── */
+    .product-body {
+      padding: 18px 18px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      flex: 1;
+    }
+
+    .product-body h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 24px;
+      letter-spacing: 2px;
+      color: var(--text);
+    }
+
+    /* ── PRIX ── */
+    .prices {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .price-item {
+      background: rgba(46,204,113,0.08);
+      border: 1px solid rgba(46,204,113,0.2);
+      border-radius: 8px;
+      padding: 8px 10px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--accent);
+      font-weight: 500;
+      line-height: 1.4;
+    }
+    .price-item span {
+      display: block;
+      font-size: 11px;
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    /* ── SÉLECTEUR ── */
+    .order-row {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .order-row label {
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.5px;
+    }
+    .order-row select {
+      width: 100%;
+      background: var(--bg);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      cursor: pointer;
+      outline: none;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23666' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+    }
+    .order-row select:focus {
+      border-color: var(--accent);
+    }
+
+    /* ── BOUTON ── */
+    .btn-commander {
+      width: 100%;
+      background: var(--accent);
+      color: #000;
+      border: none;
+      border-radius: 8px;
+      padding: 12px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 17px;
+      letter-spacing: 2px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .btn-commander:hover { background: var(--accent2); }
+    .btn-commander:active { transform: scale(0.97); }
+
+    /* ── TOAST ── */
+    #toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(16px);
+      background: var(--accent);
+      color: #000;
+      padding: 10px 22px;
+      border-radius: 40px;
+      font-size: 13px;
+      font-weight: 500;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s, transform 0.3s;
+      white-space: nowrap;
+      z-index: 999;
+    }
+    #toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: var(--muted);
+      font-size: 11px;
+      border-top: 1px solid var(--border);
+      letter-spacing: 1px;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 480px) {
+      header h1 { font-size: 32px; }
+      .products { padding: 16px 12px 40px; gap: 14px; }
+      .media-wrap { height: 170px; }
+    }
+  </style>
 </head>
 <body>
 
 <header>
-<h1>🐺 The Jackal Bordeaux </h1>
-<p>Choisissez vos produits et passez commande</p>
+  <h1>🐺 The Jackal Bordeaux</h1>
+  <p>Choisissez votre produit et passez commande via Telegram</p>
 </header>
 
 <div class="products">
 
-  <div class="Filtrer">
-    <video controls >
-  <source src="4A749AAA-8BE3-4EB1-9770-BA8C894F16FB.mov" type="video/mp4">
-    </video>    
-  <h3>Filtrer</h3>
-    
-    <p class="price">5g 40€</p>
-    <p class="price">10g 70€</p>
-    <p class="price">50g 300€</p>
-    <p class="price">100g 500€</p>
-    
-
-    <input type="number" value="1" min="20€" id="qty1">
-    <button onclick="commander('Filtrer',  document.getElementById('qty1').value)">Commander</button>
+  <!-- PRODUIT 1 — VIDÉO -->
+  <div class="product">
+    <div class="media-wrap">
+      <video autoplay muted loop playsinline>
+        <source src="4A749AAA-8BE3-4EB1-9770-BA8C894F16FB.mov" type="video/mp4"/>
+        Votre navigateur ne supporte pas la vidéo.
+      </video>
+    </div>
+    <div class="product-body">
+      <h3>Filtrer</h3>
+      <div class="prices">
+        <div class="price-item"><span>5g</span>40 €</div>
+        <div class="price-item"><span>10g</span>70 €</div>
+        <div class="price-item"><span>50g</span>300 €</div>
+        <div class="price-item"><span>100g</span>500 €</div>
+      </div>
+      <div class="order-row">
+        <label>Choisir la quantité</label>
+        <select id="opt1">
+          <option value="5g — 40€">5g — 40 €</option>
+          <option value="10g — 70€">10g — 70 €</option>
+          <option value="50g — 300€">50g — 300 €</option>
+          <option value="100g — 500€">100g — 500 €</option>
+        </select>
+      </div>
+      <button class="btn-commander" onclick="commander('Filtrer', document.getElementById('opt1').value)">
+        ✈️ Commander
+      </button>
+    </div>
   </div>
 
-  <div class="Beuh">
-      <img src="IMG_0254.jpeg" alt="Banana kush">
-    <h3>Banana kush</h3>
-    <p class="price">5g 50€</p>
-    <p class="price">10g 80€</p>
-    <p class="price">50g 350€</p>
-    <p class="price">100g 600€</p>
-
-    <input type="number" value="1" min="1" id="qty2">
-    <button onclick="commander('Banana kush', 90, document.getElementById('qty2').value)">Commander</button>
+  <!-- PRODUIT 2 — PHOTO -->
+  <div class="product">
+    <div class="media-wrap">
+      <img src="IMG_0254.jpeg" alt="Banana Kush"/>
+    </div>
+    <div class="product-body">
+      <h3>Banana Kush</h3>
+      <div class="prices">
+        <div class="price-item"><span>5g</span>50 €</div>
+        <div class="price-item"><span>10g</span>80 €</div>
+        <div class="price-item"><span>50g</span>350 €</div>
+        <div class="price-item"><span>100g</span>600 €</div>
+      </div>
+      <div class="order-row">
+        <label>Choisir la quantité</label>
+        <select id="opt2">
+          <option value="5g — 50€">5g — 50 €</option>
+          <option value="10g — 80€">10g — 80 €</option>
+          <option value="50g — 350€">50g — 350 €</option>
+          <option value="100g — 600€">100g — 600 €</option>
+        </select>
+      </div>
+      <button class="btn-commander" onclick="commander('Banana Kush', document.getElementById('opt2').value)">
+        ✈️ Commander
+      </button>
+    </div>
   </div>
-
-  
 
 </div>
+
+<footer>© 2025 The Jackal Bordeaux</footer>
+
+<div id="toast"></div>
+
 <script>
-function commander(produit, prix, quantite, adresse) {
-  const message = `Commande Jackal:%0AProduit: ${produit}%0APrix: ${prix}€%0AQuantité: ${quantite} €%0AAdresse: ${adresse}  `;
-  
-  const username = "leplug330bdx"; // ton pseudo sans @
-  
-  const url = `https://t.me/${username}?text=${message}`;
-  
-  window.open(url, "_blank");
-}
+  function commander(produit, option) {
+    const message = encodeURIComponent(
+      `🐺 Commande Jackal\n` +
+      `Produit : ${produit}\n` +
+      `Option : ${option}`
+    );
+    const username = "leplug330bdx";
+    const url = `https://t.me/${username}?text=${message}`;
+    window.open(url, "_blank");
+    showToast("Redirection vers Telegram...");
+  }
+
+  function showToast(msg) {
+    const t = document.getElementById("toast");
+    t.textContent = msg;
+    t.classList.add("show");
+    clearTimeout(t._t);
+    t._t = setTimeout(() => t.classList.remove("show"), 2500);
+  }
 </script>
 
 </body>
