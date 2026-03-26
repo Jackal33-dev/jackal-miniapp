@@ -269,7 +269,7 @@
   <!-- PRODUIT 2 — PHOTO -->
   <div class="product">
     <div class="media-wrap">
-      <img src="PHOto.png" alt="Banana Kush"/>
+      <img src="IMG_0254.jpeg" alt="Banana Kush"/>
     </div>
     <div class="product-body">
       <h3>Banana Kush</h3>
@@ -295,7 +295,36 @@
   </div>
 
 </div>
-
+<!-- PRODUIT 1 — VIDÉO -->
+  <div class="product">
+    <div class="media-wrap">
+      <video autoplay muted loop playsinline>
+        <source src="98A6C278-AACC-4AE6-9F64-D4BD93DA1F85.mov" type="video/mp4"/>
+        Votre navigateur ne supporte pas la vidéo.
+      </video>
+    </div>
+    <div class="product-body">
+      <h3>Jaune</h3>
+      <div class="prices">
+        <div class="price-item"><span>5g</span>30 €</div>
+        <div class="price-item"><span>10g</span>60 €</div>
+        <div class="price-item"><span>50g</span>200 €</div>
+        <div class="price-item"><span>100g</span>370 €</div>
+      </div>
+      <div class="order-row">
+        <label>Choisir la quantité</label>
+        <select id="opt1">
+          <option value="5g — 30€">5g — 30 €</option>
+          <option value="10g — 60€">10g — 60 €</option>
+          <option value="50g — 200€">50g — 200 €</option>
+          <option value="100g — 370€">100g — 370 €</option>
+        </select>
+      </div>
+      <button class="btn-commander" onclick="commander('Jaune', document.getElementById('opt1').value)">
+        ✈️ Commander
+      </button>
+    </div>
+  </div>
 <footer>© 2025 The Jackal Bordeaux</footer>
 
 <div id="toast"></div>
