@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Green District — Boutique CBD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Permanent+Marker&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0B0B0B;
+    --surface:#141414;
+    --surface-2:#1C1C1A;
+    --line:#2B2B28;
+    --text:#F2F0EA;
+    --muted:#9A988F;
+    --gold:#E0B34C;
+    --gold-dark:#B8862F;
+    --green:#5DBB63;
+    --green-deep:#1E4D2B;
+    --radius:14px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',system-ui,sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    position:relative;
+  }
+  /* grain béton subtil sur toute la page */
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:1;
+    opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  main,header,footer,.agebar{position:relative;z-index:2}
+  /* logo en fond flou */
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  background-image:url("IMG_0947.JPG");
+  background-repeat:no-repeat;
+  background-position:center 30%;
+  background-size:min(70vw, 600px);
+  filter:blur(3px);
+  opacity:.2;
+}
+
+  .display{font-family:'Anton',sans-serif;text-transform:uppercase;line-height:1;letter-spacing:.01em}
+  .marker{font-family:'Permanent Marker',cursive}
+
+  /* ---------- BANDEAU 18+ ---------- */
+  .agebar{
+    background:var(--green-deep);
+    text-align:center;
+    font-size:.78rem;
+    letter-spacing:.08em;
+    padding:8px 16px;
+    text-transform:uppercase;
+    font-weight:700;
+  }
+  .agebar strong{color:var(--gold)}
+
+  /* ---------- HEADER ---------- */
+  header{
+    max-width:1100px;margin:0 auto;
+    padding:70px 24px 44px;
+    background:radial-gradient(ellipse 90% 70% at 20% 0%, rgba(30,77,43,.5), transparent 65%);
+  }
+  .eyebrow{
+    display:inline-block;
+    font-size:1rem;
+    color:var(--green);
+    transform:rotate(-2deg);
+    margin-bottom:10px;
+  }
+  header h1{
+    font-size:clamp(3.2rem,11vw,6.5rem);
+    color:var(--text);
+  }
+  header h1 span{
+    color:transparent;
+    -webkit-text-stroke:2px var(--gold);
+  }
+  .underline{
+    display:block;width:min(320px,60%);height:14px;margin-top:6px;
+  }
+  header p.lede{
+    max-width:520px;margin-top:22px;color:var(--muted);font-size:1.02rem;
+  }
+  header p.lede b{color:var(--text)}
+
+  /* ---------- GRILLE PRODUITS ---------- */
+  .section-title{
+    max-width:1100px;margin:0 auto;padding:0 24px 18px;
+    display:flex;align-items:baseline;gap:14px;
+  }
+  .section-title h2{font-size:clamp(1.6rem,4vw,2.2rem);color:var(--gold)}
+  .section-title .count{color:var(--muted);font-size:.85rem;letter-spacing:.12em;text-transform:uppercase}
+  .grid{
+    max-width:1100px;margin:0 auto;
+    padding:0 24px 80px;
+    display:grid;gap:16px;
+    grid-template-columns:repeat(2,1fr);
+  }
+  @media(min-width:760px){.grid{grid-template-columns:repeat(4,1fr)}}
+  .card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    overflow:hidden;
+    cursor:pointer;
+    transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease;
+    text-align:left;color:inherit;font:inherit;
+    display:flex;flex-direction:column;
+  }
+  .card:hover,.card:focus-visible{
+    transform:translateY(-4px) rotate(-.6deg);
+    border-color:var(--gold-dark);
+    box-shadow:0 14px 30px rgba(0,0,0,.5);
+  }
+  .card:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+  .card .visual{
+    aspect-ratio:1/1;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Anton',sans-serif;
+    font-size:3rem;
+    color:transparent;
+    -webkit-text-stroke:1.5px rgba(224,179,76,.7);
+    background:
+      radial-gradient(circle at 30% 25%, rgba(93,187,99,.22), transparent 60%),
+      radial-gradient(circle at 78% 82%, rgba(224,179,76,.12), transparent 55%),
+      var(--surface-2);
+  }
+  .card .visual img{width:100%;height:100%;object-fit:cover}
+  .card .info{padding:13px 15px 15px;display:flex;flex-direction:column;gap:6px;flex:1}
+  .tag{
+    align-self:flex-start;
+    font-family:'Permanent Marker',cursive;
+    font-size:.75rem;
+    color:#0B0B0B;
+    background:var(--green);
+    padding:2px 9px;border-radius:3px;
+    transform:rotate(-1.5deg);
+  }
+  .card h3{font-family:'Anton',sans-serif;text-transform:uppercase;font-weight:400;font-size:1.05rem;letter-spacing:.02em}
+  .card .price{margin-top:auto;color:var(--gold);font-weight:700;font-size:.95rem}
+
+  /* ---------- FICHE PRODUIT (overlay) ---------- */
+  .overlay{
+    position:fixed;inset:0;z-index:50;
+    background:rgba(5,5,5,.78);
+    backdrop-filter:blur(6px);
+    display:none;
+    align-items:flex-end;justify-content:center;
+  }
+  .overlay.open{display:flex}
+  @media(min-width:760px){.overlay{align-items:center;padding:32px}}
+  .sheet{
+    background:var(--surface);
+    border:1px solid var(--line);
+    width:100%;max-width:720px;
+    max-height:92vh;overflow-y:auto;
+    border-radius:20px 20px 0 0;
+    animation:up .3s ease;
+  }
+  @media(min-width:760px){.sheet{border-radius:20px}}
+  @keyframes up{from{transform:translateY(30px);opacity:0}to{transform:none;opacity:1}}
+  @media(prefers-reduced-motion:reduce){
+    .sheet{animation:none}
+    .card{transition:none}
+  }
+  .sheet-head{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:16px 20px;border-bottom:1px solid var(--line);
+    position:sticky;top:0;background:var(--surface);z-index:2;
+  }
+  .close{
+    background:var(--surface-2);border:1px solid var(--line);
+    color:var(--text);width:38px;height:38px;border-radius:50%;
+    font-size:1.05rem;cursor:pointer;
+  }
+  .close:hover{border-color:var(--gold)}
+  .media{
+    aspect-ratio:16/10;background:var(--surface-2);
+    display:flex;align-items:center;justify-content:center;
+    border-bottom:1px solid var(--line);
+  }
+  .media video{width:100%;height:100%;object-fit:cover}
+  .media .placeholder{text-align:center;color:var(--muted);font-size:.9rem}
+  .media .placeholder .play{
+    width:64px;height:64px;border-radius:50%;
+    border:2px solid var(--gold);
+    display:flex;align-items:center;justify-content:center;
+    margin:0 auto 12px;color:var(--gold);font-size:1.3rem;
+  }
+  .sheet-body{padding:24px 22px 28px}
+  .sheet-body h2{font-family:'Anton',sans-serif;text-transform:uppercase;font-weight:400;font-size:2rem;margin-bottom:6px}
+  .specs{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 18px}
+  .spec{
+    background:var(--surface-2);border:1px solid var(--line);
+    border-radius:8px;padding:8px 12px;font-size:.8rem;color:var(--muted);
+  }
+  .spec b{color:var(--green);display:block;font-size:.95rem}
+  .sheet-body p.desc{color:var(--muted)}
+  .sheet-price{
+    font-family:'Anton',sans-serif;
+    font-size:1.7rem;color:var(--gold);
+    margin:20px 0 16px;
+  }
+  .tarifs{display:flex;flex-wrap:wrap;gap:10px}
+  .tarif{
+    flex:1;min-width:90px;
+    background:var(--surface-2);border:1px solid var(--line);
+    border-radius:10px;padding:10px 12px;text-align:center;
+  }
+  .tarif span{
+    display:block;font-family:'Inter',sans-serif;
+    font-size:.75rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;
+  }
+  .tarif b{font-family:'Anton',sans-serif;font-weight:400;font-size:1.25rem;color:var(--gold)}
+  .btn-tg{
+    display:flex;align-items:center;justify-content:center;gap:10px;
+    width:100%;padding:16px;
+    background:var(--gold);color:#0B0B0B;
+    border:none;border-radius:12px;
+    font-family:'Anton',sans-serif;text-transform:uppercase;letter-spacing:.05em;
+    font-size:1.05rem;font-weight:400;
+    text-decoration:none;cursor:pointer;
+    transition:background .2s;
+  }
+  .btn-tg:hover{background:#f0c765}
+  .btn-tg svg{width:20px;height:20px}
+
+  /* ---------- BOUTON TELEGRAM FLOTTANT ---------- */
+  .tg-float{
+    position:fixed;right:18px;bottom:18px;z-index:40;
+    display:flex;align-items:center;gap:10px;
+    background:var(--gold);color:#0B0B0B;
+    padding:13px 19px;border-radius:999px;
+    font-family:'Anton',sans-serif;text-transform:uppercase;letter-spacing:.04em;
+    font-size:.9rem;text-decoration:none;
+    box-shadow:0 8px 24px rgba(0,0,0,.55);
+  }
+  .tg-float svg{width:18px;height:18px}
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    border-top:1px solid var(--line);
+    padding:36px 24px 96px;
+    text-align:center;color:var(--muted);font-size:.8rem;
+    max-width:700px;margin:0 auto;
+  }
+  footer .brand{font-family:'Anton',sans-serif;text-transform:uppercase;color:var(--text);font-size:1rem}
+</style>
+</head>
+<body>
+
+<div class="agebar">Réservé aux · <strong>Puriste</strong> · Produits De qualité · THC a fond</div>
+
+<header>
+  <span class="eyebrow marker">100% Defonce, 100% Bien</span>
+  <h1 class="display">THE<br><span>Jackal 33</span></h1>
+  <svg class="underline" viewBox="0 0 320 14" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M2 9 C 60 3, 140 12, 200 7 S 300 4, 318 8" stroke="#5DBB63" stroke-width="5" fill="none" stroke-linecap="round" opacity=".9"/>
+  </svg>
+  <p class="lede"><b>4 produits  sélectionnés</b>, avec soin et rafinité dans l'UE . Touchez un produit pour voir sa vidéo et ses détails, puis passez commande directement sur Telegram.</p>
+</header>
+
+<div class="section-title">
+  <h2 class="display">Le menu</h2>
+  <span class="count">4 références</span>
+</div>
+
+<main class="grid" id="grid"></main>
+
+<a class="tg-float" href="https://t.me/Mexico33k" target="_blank" rel="noopener">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
+  Contact
+</a>
+
+<footer>
+  <p class="brand">Jackal 33</p>
+  <p style="margin-top:8px">.</p>
+</footer>
+
+<!-- ---------- FICHE PRODUIT ---------- -->
+<div class="overlay" id="overlay" role="dialog" aria-modal="true">
+  <div class="sheet">
+    <div class="sheet-head">
+      <span class="tag" id="d-tag"></span>
+      <button class="close" id="closeBtn" aria-label="Fermer">✕</button>
+    </div>
+    <div class="media" id="d-media"></div>
+    <div class="sheet-body">
+      <h2 id="d-name"></h2>
+      <div class="specs" id="d-specs"></div>
+      <p class="desc" id="d-desc"></p>
+      <div class="sheet-price" id="d-price"></div>
+      <a class="btn-tg" id="d-tg" href="https://t.me/leplug330bdx" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
+        Commander sur Telegram
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   VOS PRODUITS — modifiez simplement les lignes ci-dessous.
+   - image : lien vers une photo (ou "" pour l'aperçu par défaut)
+   - video : lien vers votre vidéo .mp4 (ou "" pour le placeholder)
+   ============================================================ */
+const TELEGRAM = "https://t.me/leplug330bdx"; // ← votre lien Telegram ici
+
+const produits = [
+  {nom:"Cali meuda ", type:"Fleur", origine:"Spain · ", prix:"dès 5  g",video:"", video:"D54DD5CA-FBC0-43A7-B1B9-8000F4278A90.MOV",
+   tarifs:[{q:"5 g", p:"40 €"},{q:"10 g", p:"60 €"},{q:"25 g", p:"150 €"},{q:"50 g", p:"300 €"},{q:"100 g", p:"480 €"}],
+   desc:"90/190"},
+  
+  {nom:"Jaune Mousseux", type:"Résine", origine:"rif", prix:"dés 5  g", image:"", video:"98A6C278-AACC-4AE6-9F64-D4BD93DA1F85.mov",
+   tarifs:[{q:"5 g", p:"30 €"},{q:"10 g", p:"50 €"},{q:"20 g", p:"100 €"},{q:"50 g", p:" 150 €"},{q:"100g", p:"280 €"},],
+   desc:"smoke & joy"},
+   
+  
+  {nom:"Weed Amnesia", type:"Fleur", origine:"Meuda", prix:"dés 5 g", image:"", video:"D8525CE9-D107-4A63-9249-1823613AEC14.MOV",
+   tarifs:[{q:" 5g", p:"40 €"},{q:"10 g", p:"60 €"},{q:"25 g", p:"150 €"},{q:"50 g", p:" 300 €"},{q:"100g", p:"450 €"}],
+   desc:"Fleur de Cannabis "},
+  {nom:"Coke", type:"Pavé", origine:"Guyannaise " ,prix:" dés 1g", image:"", video:"9AC67F21-87C2-42E8-B193-37A66F2DC0ED.MOV",
+   tarifs:[{q:" 1g", p:"50 €"},{q:"2 g", p:"100 €"},{q:"5 g", p:"180 €"},{q:"10 g", p:" 350 €"}],
+   desc:"E-liquide saveur OG Kush, flacon 10 ml, compatible avec toutes les cigarettes électroniques."}
+];
+
+/* ---------- Génération de la grille ---------- */
+const grid = document.getElementById("grid");
+produits.forEach((p,i)=>{
+  const card = document.createElement("button");
+  card.className = "card";
+  card.innerHTML = `
+    <div class="visual">${p.image ? `<img src="${p.image}" alt="${p.nom}">` : p.nom.charAt(0)}</div>
+    <div class="info">
+      <span class="tag">${p.type}</span>
+      <h3>${p.nom}</h3>
+      <div class="price">${p.prix}</div>
+    </div>`;
+  card.addEventListener("click",()=>ouvrir(i));
+  grid.appendChild(card);
+});
+
+/* ---------- Fiche produit ---------- */
+const overlay = document.getElementById("overlay");
+function ouvrir(i){
+  const p = produits[i];
+  document.getElementById("d-tag").textContent = p.type;
+  document.getElementById("d-name").textContent = p.nom;
+  document.getElementById("d-desc").textContent = p.desc;
+  if(p.tarifs && p.tarifs.length){
+    document.getElementById("d-price").innerHTML = `<div class="tarifs">` +
+      p.tarifs.map(t=>`<div class="tarif"><span>${t.q}</span><b>${t.p}</b></div>`).join("") +
+      `</div>`;
+  } else {
+    document.getElementById("d-price").textContent = p.prix;
+  }
+  document.getElementById("d-specs").innerHTML = `
+    <div class="spec">Taux<b>${p.taux}</b></div>
+    <div class="spec">Origine<b>${p.origine}</b></div>`;
+  document.getElementById("d-media").innerHTML = p.video
+    ? `<video src="${p.video}" controls playsinline></video>`
+    : `<div class="placeholder"><div class="play">▶</div>Votre vidéo du produit ici</div>`;
+  document.getElementById("d-tg").href = TELEGRAM;
+  overlay.classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+function fermer(){
+  overlay.classList.remove("open");
+  document.body.style.overflow = "";
+  document.getElementById("d-media").innerHTML = "";
+}
+document.getElementById("closeBtn").addEventListener("click",fermer);
+overlay.addEventListener("click",e=>{ if(e.target===overlay) fermer(); });
+document.addEventListener("keydown",e=>{ if(e.key==="Escape") fermer(); });
+document.querySelector(".tg-float").href = TELEGRAM;
+</script>
+</body>
+</html>
